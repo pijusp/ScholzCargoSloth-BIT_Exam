@@ -1,0 +1,107 @@
+body {
+    font-family: "Poppins", sans-serif;
+}
+.bg-light {
+    background-color: #f5f5dc;
+}
+.messages-bin {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    max-width: 300px;
+    z-index: 9991;
+}
+.btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    button {
+        display: flex;
+        gap: 10px;
+    }
+}
+// BUTTONS
+$danger: #f8d7da;
+$info: #d1ecf1;
+$prim: #cce5ff;
+.btn-danger {
+    color: black;
+    background-color: $danger;
+    border-color: darken($danger, 15);
+    &:hover {
+        color: black;
+        background-color: lighten($danger, 5);
+        border-color: $danger;
+    }
+    &:disabled {
+        color: black;
+        background-color: lightgrey;
+        border-color: darken(lightgrey, 20);
+    }
+}
+
+.btn-info {
+    color: black;
+    background-color: $info;
+    border-color: darken($info, 25);
+    &:hover {
+        color: black;
+        background-color: lighten($info, 5);
+        border-color: $info;
+    }
+    &:disabled {
+        color: black;
+        background-color: lightgrey;
+        border-color: darken(lightgrey, 20);
+    }
+}
+
+.btn-primary {
+    color: black;
+    background-color: $prim;
+    border-color: darken($prim, 25);
+    &:hover {
+        color: black;
+        background-color: lighten($prim, 5);
+        border-color: $prim;
+    }
+    &:disabled {
+        color: black;
+        background-color: lightgrey;
+        border-color: darken(lightgrey, 20);
+    }
+}
+.card img {
+    width: 100%;
+    height: 300px;
+}
+.auth {
+    display: flex;
+    gap: 10px;
+}
+.nav-link {
+    cursor: pointer;
+}
+li {
+    list-style-type: none;
+}
+.nav-collapse .li {
+    list-style-type: none;
+}
+.donation-notification {
+    margin: 10px;
+}
+.navbar-logo {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    padding: 0 20 0 0px;
+}
+
+.logo-photo {
+    max-height: 100%;
+    max-width: 100%;
+}
+.nav-item {
+    font-size: 18px;
+}
