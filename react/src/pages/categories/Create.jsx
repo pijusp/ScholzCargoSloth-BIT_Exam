@@ -5,23 +5,26 @@ import { useFile } from "../../Use/useFile";
 
 export default function Create() {
     const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [donationAmount, setDonationAmount] = useState("");
+    const [weight, setWeight] = useState("");
+    const [flammable, setFlammable] = useState("");
+    const [shortterm, setShortterm] = useState("");
 
     const { dispatch } = useContext(Store);
     const [file, readFile, remImage] = useFile();
     const create = (_) => {
         dispatch(
-            actionsList["stories-create"]({
+            actionsList["boxes-create"]({
                 file,
                 title,
-                description,
-                goal_sum: donationAmount,
+                weight,
+                flammable,
+                short_term: shortterm,
             })
         );
         setTitle("");
-        setDescription("");
-        setDonationAmount("");
+        setWeight("");
+        setFlammable("");
+        setShortterm("");
         remImage();
     };
     return (
@@ -36,7 +39,7 @@ export default function Create() {
                                     htmlFor="formFile"
                                     className="form-label"
                                 >
-                                    Story image
+                                    Box image
                                 </label>
                                 <input
                                     className="form-control form-control-sm"
@@ -68,43 +71,56 @@ export default function Create() {
                                     type="text"
                                     className="form-control"
                                     id="floatingInput"
-                                    placeholder="Your wish..."
+                                    placeholder="Your shipment name..."
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
                                 ></input>
                                 <label htmlFor="floatingInput">
-                                    Wish title
+                                    Shipment box title
                                 </label>
-                            </div>
-                            <div className="mb-3">
-                                <label
-                                    htmlFor="exampleFormControlTextarea1"
-                                    className="form-label"
-                                >
-                                    Wish description
-                                </label>
-                                <textarea
-                                    className="form-control"
-                                    id="exampleFormControlTextarea1"
-                                    rows="3"
-                                    value={description}
-                                    onChange={(e) =>
-                                        setDescription(e.target.value)
-                                    }
-                                />
                             </div>
                             <div className="form-floating mb-3">
                                 <input
                                     type="number"
                                     className="form-control"
                                     id="floatingInput"
-                                    placeholder="Your required amount..."
-                                    value={donationAmount}
+                                    placeholder="Box weight..."
+                                    value={weight}
+                                    onChange={(e) => setWeight(e.target.value)}
+                                ></input>
+                                <label htmlFor="floatingInput">
+                                    Shipment weight
+                                </label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="floatingInput"
+                                    placeholder="Is it flammable? yes/no..."
+                                    value={flammable}
                                     onChange={(e) =>
-                                        setDonationAmount(e.target.value)
+                                        setFlammable(e.target.value)
                                     }
                                 ></input>
-                                <label htmlFor="floatingInput">Wish goal</label>
+                                <label htmlFor="floatingInput">
+                                    Is the shipment flammable? yes/no
+                                </label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="floatingInput"
+                                    placeholder="Is it flammable? yes/no..."
+                                    value={shortterm}
+                                    onChange={(e) =>
+                                        setShortterm(e.target.value)
+                                    }
+                                ></input>
+                                <label htmlFor="floatingInput">
+                                    Is the shipment short-term? yes/no
+                                </label>
                             </div>
                             <button
                                 type="button"

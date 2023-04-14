@@ -8,7 +8,7 @@ import StoriesCreate from "./pages/categories/Create";
 import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
-import StoriesList from "./pages/categories/List";
+import BoxesList from "./pages/categories/List";
 import Messages from "./components/Messages";
 import SectionsEdit from "./pages/categories/Edit";
 import Loader from "./components/Loader";
@@ -21,18 +21,13 @@ function App() {
         <GlobalProvider>
             {loader ? <Loader /> : null}
             {pageTop === "nav" ? <Nav /> : null}
-
             {messages && messages.length ? (
                 <Messages messages={messages} />
             ) : null}
-
             {page === "home" ? <Home /> : null}
-            {page === "boxes-create" ? (
-                <Auth>
-                    <StoriesCreate />
-                </Auth>
-            ) : null}
-            {page === "boxes-list" ? <StoriesList /> : null}
+            {page === "boxes-create" ? <StoriesCreate /> : null}// Prideti auth
+            veliau
+            {page === "boxes-list" ? <BoxesList /> : null}
             {page === "boxes-show-edit" ? <SectionsEdit /> : null}
             {page === "login" ? <Login /> : null}
             {page === "register" ? <Register /> : null}

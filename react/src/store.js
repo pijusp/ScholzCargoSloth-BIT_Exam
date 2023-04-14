@@ -1,23 +1,21 @@
 import { createContext, useReducer, useState } from "react";
 import main from "./reducers/main";
 import {
-    storiesCreate,
-    storiesList,
-    storiesDelete,
-    storiesShowEdit,
-    storiesEdit,
-    storiesAddDonation,
+    boxesCreate,
+    boxesList,
+    boxesDelete,
+    boxesShowEdit,
+    boxesEdit,
     usersCreate,
 } from "./actions";
 import axios from "axios";
 
 export const actionsList = {
-    "stories-list": storiesList,
-    "stories-create": storiesCreate,
-    "stories-delete": storiesDelete,
-    "stories-show-edit": storiesShowEdit,
-    "stories-edit": storiesEdit,
-    "stories-add-donation": storiesAddDonation,
+    "boxes-list": boxesList,
+    "boxes-create": boxesCreate,
+    "boxes-delete": boxesDelete,
+    "boxes-show-edit": boxesShowEdit,
+    "boxes-edit": boxesEdit,
     "add-new-user": usersCreate,
 };
 const url = "http://localhost:3003/";

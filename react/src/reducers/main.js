@@ -1,12 +1,11 @@
 import {
     NAVIGATE,
-    STORIES_LIST,
-    STORIES_CREATE,
+    BOXES_LIST,
+    BOXES_CREATE,
     REMOVE_MESSAGE,
-    STORIES_DELETE,
-    STORIES_SHOW_EDIT,
-    STORIES_EDIT,
-    STORIES_ADD_DONATION,
+    BOXES_DELETE,
+    BOXES_SHOW_EDIT,
+    BOXES_EDIT,
     ADD_NEW_USER,
 } from "../types";
 import { v4 as uuidv4 } from "uuid";
@@ -31,18 +30,17 @@ export default function main(state, action) {
                     c.pageTop = defaultNav;
             }
             return c;
-        case STORIES_LIST:
-        case STORIES_SHOW_EDIT:
+        case BOXES_LIST:
+        case BOXES_SHOW_EDIT:
         case ADD_NEW_USER:
             c.pageTop = "nav";
             c.page = action.payload.page;
             c.data = action.payload.data;
             return c;
 
-        case STORIES_CREATE:
-        case STORIES_DELETE:
-        case STORIES_EDIT:
-        case STORIES_ADD_DONATION:
+        case BOXES_CREATE:
+        case BOXES_DELETE:
+        case BOXES_EDIT:
             if (action.payload.msg) {
                 const uuid = uuidv4();
                 if (!c.messages) {

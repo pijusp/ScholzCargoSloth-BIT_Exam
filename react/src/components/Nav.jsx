@@ -36,13 +36,13 @@ export default function Nav() {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="stories-create" className="nav-link">
-                                Create a goal
+                            <Link to="boxes-create" className="nav-link">
+                                Create a new shipment
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link action="stories-list" className="nav-link">
-                                Stories list
+                            <Link action="boxes-list" className="nav-link">
+                                Boxes List
                             </Link>
                         </li>
                     </ul>

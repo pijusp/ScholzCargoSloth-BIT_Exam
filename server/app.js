@@ -83,29 +83,6 @@ const createPhoto = (photo) => {
 
 //*************** STORIES ********************/
 
-app.get("/admin/stories", (req, res) => {
-    const sql = `
-        SELECT id, title, description, img, start_sum, current_sum, goal_sum
-        FROM stories
-        ORDER BY title
-    `;
-    con.query(sql, (err, result) => {
-        if (err) throw err;
-        res.json({ data: result });
-    });
-});
-
-app.get("/admin/stories/:id", (req, res) => {
-    const sql = `
-        SELECT id, title, description, img, start_sum, current_sum, goal_sum
-        FROM stories
-        WHERE id = ?
-    `;
-    con.query(sql, [req.params.id], (err, result) => {
-        if (err) throw err;
-        res.json({ data: result[0] });
-    });
-});
 app.get("/admin/boxes", (req, res) => {
     const sql = `
         SELECT id, title, img, weight, flammable, short_term
@@ -129,28 +106,29 @@ app.get("/admin/boxes/:id", (req, res) => {
         res.json({ data: result[0] });
     });
 });
-app.post("/admin/stories", (req, res) => {
+app.post("/admin/boxes", (req, res) => {
     const sql = `
-    INSERT INTO stories (title, description, img, start_sum, current_sum, goal_sum)
-    VALUES (?, ?, ?, 0, 0, ?)
+    INSERT INTO boxes (title, img, weight, flammable, short_term)
+    VALUES (?, ?, ?, ?, ?)
   `;
     con.query(
         sql,
         [
             req.body.title,
-            req.body.description,
             createPhoto(req.body.file),
-            req.body.goal_sum,
+            req.body.weight,
+            req.body.flammable,
+            req.body.short_term,
         ],
         (err) => {
             if (err) {
                 console.error(err);
                 res.status(500).json({
-                    msg: { text: "Error adding new story", type: "error" },
+                    msg: { text: "Error adding new shipment", type: "error" },
                 });
             } else {
                 res.json({
-                    msg: { text: "New story added", type: "success" },
+                    msg: { text: "New shipment added", type: "success" },
                 });
             }
         }
