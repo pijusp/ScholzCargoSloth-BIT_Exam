@@ -167,9 +167,9 @@ app.put("/admin/boxes/:id", (req, res) => {
         `;
         params = [
             req.body.title,
-            req.body.description,
-            req.body.current_sum,
-            req.body.goal_sum,
+            req.body.weight,
+            req.body.flammable,
+            req.body.short_term,
             id,
         ];
     } else {
