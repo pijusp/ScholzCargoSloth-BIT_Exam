@@ -201,7 +201,7 @@ app.post("/login", (req, res) => {
         (err, result) => {
             if (err) throw err;
             if (result.affectedRows) {
-                res.cookie("storiesSession", sessionId);
+                res.cookie("boxesSession", sessionId);
                 res.json({
                     status: "ok",
                     name: req.body.name,
@@ -220,7 +220,7 @@ app.get("/login", (req, res) => {
         FROM users
         WHERE session = ?
     `;
-    con.query(sql, [req.cookies.storiesSession || ""], (err, result) => {
+    con.query(sql, [req.cookies.boxesSession || ""], (err, result) => {
         if (err) throw err;
 
         if (result.length) {
@@ -236,7 +236,7 @@ app.get("/login", (req, res) => {
     });
 });
 app.post("/logout", (req, res) => {
-    res.cookie("storiesSession", "");
+    res.cookie("boxesSession", "");
     res.json({
         status: "logout",
     });
