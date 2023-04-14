@@ -135,19 +135,19 @@ app.post("/admin/boxes", (req, res) => {
     );
 });
 
-app.delete("/admin/stories/:id", (req, res) => {
+app.delete("/admin/boxes/:id", (req, res) => {
     const sql = `
-        DELETE FROM stories
+        DELETE FROM boxes
         WHERE id = ?
     `;
     con.query(sql, [req.params.id], (err) => {
         if (err) throw err;
         res.json({
-            msg: { text: "Story has been deleted", type: "info" },
+            msg: { text: "Box has been deleted", type: "info" },
         });
     });
 });
-app.put("/admin/stories/:id", (req, res) => {
+app.put("/admin/boxes/:id", (req, res) => {
     const action = req.body.action;
     const id = req.params.id;
     let sql, params;
@@ -159,10 +159,10 @@ app.put("/admin/stories/:id", (req, res) => {
             WHERE id = ?
         `;
         params = [req.body.amount, id];
-    } else if (action === "updateStory") {
+    } else if (action === "updateBox") {
         sql = `
-            UPDATE stories
-            SET title = ?, description = ?, current_sum = ?, goal_sum = ?  
+            UPDATE boxes
+            SET title = ?, weight = ?, flammable = ?, short_term = ?  
             WHERE id = ?
         `;
         params = [
@@ -179,7 +179,7 @@ app.put("/admin/stories/:id", (req, res) => {
     con.query(sql, params, (err) => {
         if (err) throw err;
         res.json({
-            msg: { text: "Story has been updated!", type: "info" },
+            msg: { text: "Shipment has been updated!", type: "info" },
         });
     });
 });
@@ -242,25 +242,6 @@ app.post("/logout", (req, res) => {
     });
 });
 
-app.post("/register", (req, res) => {
-    let allData = fs.readFileSync("./data/users.json", "utf8");
-    allData = JSON.parse(allData);
-    const id = uuidv4();
-    const data = {
-        name: req.body.name,
-        psw: md5(req.body.psw),
-        id,
-    };
-    allData.push(data);
-    allData = JSON.stringify(allData);
-    fs.writeFileSync("./data/users.json", allData, "utf8");
-    res.json({
-        status: "ok",
-    });
-});
-app.listen(port, () => {
-    console.log(`Server is on port number: ${port}`);
-});
 app.post("/admin/users", (req, res) => {
     const sql = `
     INSERT INTO users (name, password)
@@ -278,4 +259,7 @@ app.post("/admin/users", (req, res) => {
             });
         }
     });
+});
+app.listen(port, () => {
+    console.log(`Server is on port number: ${port}`);
 });

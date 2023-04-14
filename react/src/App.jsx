@@ -25,8 +25,11 @@ function App() {
                 <Messages messages={messages} />
             ) : null}
             {page === "home" ? <Home /> : null}
-            {page === "boxes-create" ? <StoriesCreate /> : null}// Prideti auth
-            veliau
+            {page === "boxes-create" ? (
+                <Auth>
+                    <StoriesCreate />
+                </Auth>
+            ) : null}
             {page === "boxes-list" ? <BoxesList /> : null}
             {page === "boxes-show-edit" ? <SectionsEdit /> : null}
             {page === "login" ? <Login /> : null}

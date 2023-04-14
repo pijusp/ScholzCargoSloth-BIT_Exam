@@ -6,96 +6,86 @@ export default function Edit() {
     const { store, dispatch } = useContext(Store);
 
     const [title, setTitle] = useState(store?.data?.title);
-    const [description, setDescription] = useState(store?.data?.description);
-    const [currentSum, setCurrentSum] = useState(store?.data?.current_sum);
-    const [donationAmount, setDonationAmount] = useState(store?.data?.goal_sum);
+    const [weight, setWeight] = useState(store?.data?.weight);
+    const [flammable, setFlammable] = useState(store?.data?.flammable);
+    const [shortterm, setShortterm] = useState(store?.data?.short_term);
 
     const edit = (_) => {
         dispatch(
-            actionsList["stories-edit"](
+            actionsList["boxes-edit"](
                 {
                     title,
-                    description,
-                    current_sum: currentSum,
-                    goal_sum: donationAmount,
-                    action: "updateStory",
+                    weight,
+                    flammable,
+                    short_term: shortterm,
+                    action: "updateBox",
                 },
                 store?.data?.id
             )
         );
     };
-    const isCurrentSumDisabled = currentSum > 0;
     return (
         <div className="container-lg">
             <div className="row justify-content-center">
                 <div className="col-8">
                     <div className="card m-5">
-                        <div className="card-header">Edit your story</div>
+                        <div className="card-header">Edit your shipment</div>
                         <div className="card-body">
                             <div className="form-floating mb-3">
                                 <input
                                     type="text"
                                     className="form-control"
                                     id="floatingInput"
-                                    placeholder="Your wish..."
+                                    placeholder="Your shipments' name..."
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
                                 ></input>
                                 <label htmlFor="floatingInput">
-                                    New wish title?
+                                    New shipment title?
                                 </label>
-                            </div>
-                            <div className="mb-3">
-                                <label
-                                    htmlFor="exampleFormControlTextarea1"
-                                    className="form-label"
-                                >
-                                    New description
-                                </label>
-                                <textarea
-                                    className="form-control"
-                                    id="exampleFormControlTextarea1"
-                                    rows="3"
-                                    value={description}
-                                    onChange={(e) =>
-                                        setDescription(e.target.value)
-                                    }
-                                />
                             </div>
                             <div className="form-floating mb-3">
                                 <input
                                     type="number"
                                     className="form-control"
                                     id="floatingInput"
-                                    placeholder="Your required amount..."
-                                    value={currentSum}
-                                    onChange={(e) =>
-                                        setCurrentSum(e.target.value)
-                                    }
-                                    disabled={isCurrentSumDisabled}
+                                    placeholder="Your box weight..."
+                                    value={weight}
+                                    onChange={(e) => setWeight(e.target.value)}
                                 ></input>
                                 <label htmlFor="floatingInput">
-                                    Current sum
+                                    Weight of the box
                                 </label>
-                                {isCurrentSumDisabled && (
-                                    <span className="text-danger">
-                                        Current sum cannot be changed once
-                                        donations are received!
-                                    </span>
-                                )}
                             </div>
                             <div className="form-floating mb-3">
                                 <input
-                                    type="number"
+                                    type="text"
                                     className="form-control"
                                     id="floatingInput"
-                                    placeholder="Your required amount..."
-                                    value={donationAmount}
+                                    placeholder="Is the shipment flammable?"
+                                    value={flammable}
                                     onChange={(e) =>
-                                        setDonationAmount(e.target.value)
+                                        setFlammable(e.target.value)
                                     }
                                 ></input>
-                                <label htmlFor="floatingInput">Wish goal</label>
+                                <label htmlFor="floatingInput">
+                                    Is the shipment flammable?
+                                </label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="floatingInput"
+                                    placeholder="Is the shipment short-term?"
+                                    value={shortterm}
+                                    onChange={(e) =>
+                                        setShortterm(e.target.value)
+                                    }
+                                ></input>
+                                <label htmlFor="floatingInput">
+                                    Is the shipment short-term?
+                                </label>
                             </div>
                             <button
                                 type="button"
